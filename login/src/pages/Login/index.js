@@ -15,7 +15,7 @@ export const Login = () =>{
 
     const { authenticated, signIn } = useContext(Context);
 
-    console.log("Situação do usuário na página login: " + authenticated);
+    //console.log("Situação do usuário na página login: " + authenticated);
 
     //hook usado para setar valores em um objeto
     const [user, setUser] = useState({
@@ -54,7 +54,7 @@ export const Login = () =>{
             loading: false
         });
         //salva o token no localStorage do navegador
-        localStorage.setItem('token', JSON.stringify(response.data.token));
+        localStorage.setItem('token', response.data.token);
         //função chamada do contex 
         signIn(true);
         //caso login com sucesso redireciona p página dashboard

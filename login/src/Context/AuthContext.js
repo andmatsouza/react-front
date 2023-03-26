@@ -14,7 +14,7 @@ function AuthProvider({ children }) {
     const getLogin = async () => {
       const token = localStorage.getItem("token");
 
-      if (token /*&& valUser()*/) {
+      if (token && valUser()) {
         api.defaults.headers.Authorization = `Bearer ${token}`;
         setAuthenticated(true);
       }
@@ -25,7 +25,7 @@ function AuthProvider({ children }) {
     getLogin();
   }, []);
 
-  /*const valUser = async () => {
+  const valUser = async () => {
     const valueToken = localStorage.getItem("token");
 
     const headers = {
@@ -34,19 +34,19 @@ function AuthProvider({ children }) {
       },
     };
 
-    await api.get("api/val-token", headers)
+    await api.get("/val-token", headers)
       .then(() => {
         return true;
       })
       .catch(() => {
         setAuthenticated(false);
         localStorage.removeItem("token");
-        localStorage.removeItem("name");
-        localStorage.removeItem("image");
+        //localStorage.removeItem("name");
+        //localStorage.removeItem("image");
         api.defaults.headers.Authorization = undefined;
         return false;
       });
-  };*/
+  };
 
  async function signIn(sit) {
     setAuthenticated(true);
