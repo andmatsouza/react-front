@@ -1,18 +1,20 @@
 import React, { createContext, useEffect, useState } from "react";
+//precisa importar a api antes do context
+import api from "../config/configApi";
 
 const Context = createContext();
 
 function AuthProvider({ children }) {
-  //const [authenticated, setAuthenticated] = useState(false);
-  //const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   
 
-  /*useEffect(() => {
+ useEffect(() => {
     const getLogin = async () => {
       const token = localStorage.getItem("token");
 
-      if (token && valUser()) {
+      if (token /*&& valUser()*/) {
         api.defaults.headers.Authorization = `Bearer ${token}`;
         setAuthenticated(true);
       }
@@ -21,7 +23,7 @@ function AuthProvider({ children }) {
     };
 
     getLogin();
-  }, []);*/
+  }, []);
 
   /*const valUser = async () => {
     const valueToken = localStorage.getItem("token");
@@ -46,24 +48,24 @@ function AuthProvider({ children }) {
       });
   };*/
 
-  /*async function signIn(sit) {
+ async function signIn(sit) {
     setAuthenticated(true);
   }
 
-  function handleLogout() {
+   /*function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("image");
     api.defaults.headers.Authorization = undefined;
-  }
+  }*/
 
   if (loading) {
     return <h1>Carregando...</h1>;
-  }*/
+  }
 
   return (
-    <Context.Provider value={{ authenticated: false }}>
+    <Context.Provider value={{authenticated, signIn}}>
       {children}
     </Context.Provider>
   );

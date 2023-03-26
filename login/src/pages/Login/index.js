@@ -13,7 +13,7 @@ export const Login = () =>{
     //usado para redirecionar página
     const navegate = useNavigate();
 
-    const { authenticated } = useContext(Context);
+    const { authenticated, signIn } = useContext(Context);
 
     console.log("Situação do usuário na página login: " + authenticated);
 
@@ -55,6 +55,8 @@ export const Login = () =>{
         });
         //salva o token no localStorage do navegador
         localStorage.setItem('token', JSON.stringify(response.data.token));
+        //função chamada do contex 
+        signIn(true);
         //caso login com sucesso redireciona p página dashboard
         return navegate("/dashboard");
        }).catch((err) => {
