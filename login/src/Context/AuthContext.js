@@ -5,12 +5,14 @@ import api from "../config/configApi";
 const Context = createContext();
 
 function AuthProvider({ children }) {
+  //hooks para setar as propriedades: authenticated, loading, etc...  
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
   
-
+//hook para executar toda vez q a pagina é chamada
  useEffect(() => {
+    //função q verifica se o token existe e é valido
     const getLogin = async () => {
       const token = localStorage.getItem("token");
 
@@ -25,6 +27,7 @@ function AuthProvider({ children }) {
     getLogin();
   }, []);
 
+  //função para validar o token junto a API
   const valUser = async () => {
     const valueToken = localStorage.getItem("token");
 
@@ -33,7 +36,7 @@ function AuthProvider({ children }) {
         Authorization: "Bearer " + valueToken,
       },
     };
-
+    //faz uma requisição p API na rota /val-token, para validar o token
     await api.get("/val-token", headers)
       .then(() => {
         return true;
@@ -51,7 +54,7 @@ function AuthProvider({ children }) {
  async function signIn(sit) {
     setAuthenticated(true);
   }
-
+  //função para logout
    function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem("token");
