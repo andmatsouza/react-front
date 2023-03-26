@@ -47,6 +47,8 @@ export const Login = () =>{
             mensagem: response.data.mensagem,*/
             loading: false
         });
+        //salva o token no localStorage do navegador
+        localStorage.setItem('token', JSON.stringify(response.data.token));
         //caso login com sucesso redireciona p página dashboard
         return navegate("/dashboard");
        }).catch((err) => {
@@ -80,7 +82,7 @@ export const Login = () =>{
                 <input type="text" name="email" placeholder="Digite o e-mail" onChange={valorInput} /><br /><br />
                 
                 <label>Senha: </label>
-                <input type="password" name="password" placeholder="Digite a senha" onChange={valorInput} /><br /><br />
+                <input type="password" name="password" placeholder="Digite a senha" autoComplete='on' onChange={valorInput} /><br /><br />
 
                 
                 {status.loading ? <button type="submit" disabled>Acessando...</button> : <button type="submit">Acessar</button>}
