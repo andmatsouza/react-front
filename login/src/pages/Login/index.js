@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 //substituiu a useHistory
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -6,10 +6,16 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 //conexão com API
 import  api from '../../config/configApi';
 
+import { Context } from '../../Context/AuthContext';
+
 export const Login = () =>{
 
     //usado para redirecionar página
     const navegate = useNavigate();
+
+    const { authenticated } = useContext(Context);
+
+    console.log("Situação do usuário na página login: " + authenticated);
 
     //hook usado para setar valores em um objeto
     const [user, setUser] = useState({
