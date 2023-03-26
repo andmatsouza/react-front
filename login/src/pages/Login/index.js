@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 //substituiu a useHistory
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
+//conexão com API
 import  api from '../../config/configApi';
 
 export const Login = () =>{
 
+    //usado para redirecionar página
     const navegate = useNavigate();
 
+    //hook usado para setar valores em um objeto
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -20,9 +23,12 @@ export const Login = () =>{
         loading: false,
     });
 
+    //função usada para setar valores nos campos do formulario
     const valorInput = e => setUser({...user, [e.target.name]: e.target.value});
 
+    //função usada para enviar valores do formulario p API
     const loginSubmit = async e => {
+
         e.preventDefault();
        // console.log(user.password);
        setStatus({
@@ -32,7 +38,7 @@ export const Login = () =>{
        const headers = {
         'Content-Type': 'application/json'
        }
-
+       //requisição post p API
        await api.post("/login", user, {headers})
        .then((response) => {
         //console.log(response)
@@ -41,6 +47,7 @@ export const Login = () =>{
             mensagem: response.data.mensagem,*/
             loading: false
         });
+        //caso login com sucesso redireciona p página dashboard
         return navegate("/dashboard");
        }).catch((err) => {
         if(err.response){
