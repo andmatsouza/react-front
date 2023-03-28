@@ -45,7 +45,7 @@ export const Users = () => {
       <Link to="/dashboard">Dashboard</Link><br />
       <Link to="/users">Usuários</Link><br />
       <h1>Listar Usuários</h1>
-
+      <Link to="/add-user">Cadastrar</Link><br /><hr />
       {status.type === 'error' ? <p>{status.mensagem}</p> : ""}
 
       {data.map(user => (
