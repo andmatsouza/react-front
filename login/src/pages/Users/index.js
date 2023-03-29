@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import api from '../../config/configApi';
 
 export const Users = () => {
 
+  const { state } = useLocation();
+  console.log(state);
+
   const[data, setData] = useState([]);
+
   const[status, setStatus] = useState({
-    type: '',
-    mensagem: ''
+    type: state ? state.type : "",
+    mensagem: state ? state.mensagem : ""
   })
 
   const getUsers = async () => {
@@ -47,6 +51,7 @@ export const Users = () => {
       <h1>Listar Usuários</h1>
       <Link to="/add-user">Cadastrar</Link><br /><hr />
       {status.type === 'error' ? <p>{status.mensagem}</p> : ""}
+      {status.type === 'success' ? <p>{status.mensagem}</p> : ""}
 
       {data.map(user => (
         <div key={user.id}>
