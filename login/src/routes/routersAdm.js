@@ -9,6 +9,7 @@ import { Dashboard } from "../pages/Dashboard";
 import { Users } from "../pages/Users";
 import { AddUser } from "../pages/AddUser";
 import { ViewUser } from "../pages/ViewUser";
+import { EditUser } from "../pages/EditUser";
 
 function PrivateRoute({ children }) {
   const { authenticated } = useContext(Context);
@@ -53,6 +54,15 @@ export default function RoutesAdm() {
         element={
           <PrivateRoute>
             <ViewUser />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/edit-user/:id"
+        element={
+          <PrivateRoute>
+            <EditUser />
           </PrivateRoute>
         }
       />
