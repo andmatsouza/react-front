@@ -8,6 +8,7 @@ import { Login } from "../pages/Login";
 import { Dashboard } from "../pages/Dashboard";
 import { Users } from "../pages/Users";
 import { AddUser } from "../pages/AddUser";
+import { ViewUser } from "../pages/ViewUser";
 
 function PrivateRoute({ children }) {
   const { authenticated } = useContext(Context);
@@ -43,6 +44,15 @@ export default function RoutesAdm() {
         element={
           <PrivateRoute>
             <AddUser />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/view-user/:id"
+        element={
+          <PrivateRoute>
+            <ViewUser />
           </PrivateRoute>
         }
       />
