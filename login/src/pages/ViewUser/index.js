@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 
 import {Menu} from '../../components/Menu';
-//import { servDeleteUser } from "../../service/servDeleteUser";
+import { servDeleteUser } from "../../services/servDeleteUser";
 import api from "../../config/configApi";
 
 export const ViewUser = (props) => {
@@ -49,7 +49,7 @@ export const ViewUser = (props) => {
     getUser();
   }, [id]);
 
-  /*const deleteUser = async (idUser) => {
+  const deleteUser = async (idUser) => {
     const response = await servDeleteUser(idUser);
 
     if (response) {
@@ -70,7 +70,7 @@ export const ViewUser = (props) => {
         mensagem: "Erro: Tente mais tarde!",
       });
     }
-  };*/
+  };
 
   return (
     <div>
@@ -86,7 +86,7 @@ export const ViewUser = (props) => {
         <button type="button">Editar Senha</button>
       </Link>{" "}
       <Link to={"#"}>
-        <button type="button" >
+        <button type="button" onClick={() => deleteUser(data.id)} >
           Apagar
         </button>
       </Link>{" "}

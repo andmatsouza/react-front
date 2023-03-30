@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 import {Menu} from '../../components/Menu';
 import api from "../../config/configApi";
-//import { servDeleteUser } from "../../service/servDeleteUser";
+import { servDeleteUser } from "../../services/servDeleteUser";
 
 export const EditUser = () => {
   const { id } = useParams();
@@ -119,7 +119,7 @@ export const EditUser = () => {
 }
   }
 
-  /*const deleteUser = async (idUser) => {
+  const deleteUser = async (idUser) => {
     const response = await servDeleteUser(idUser);
     if(response){
 
@@ -141,7 +141,7 @@ export const EditUser = () => {
         mensagem: 'Erro: tente mais tarde!'
       })
     }
-  }*/
+  }
 
   return (
     <div>
@@ -151,7 +151,7 @@ export const EditUser = () => {
 
       <Link to="/users" reloadDocument><button type="button">Listar</button></Link>{" "}
       <Link to={"/view-user/" + id} reloadDocument><button type="button">Visualizar</button>{" "}
-      <Link to={"#"}><button type="button">Apagar</button> </Link><br />
+      <Link to={"#"}><button type="button" onClick={() => deleteUser(id)}>Apagar</button> </Link><br />
         
       </Link>
       <br />
