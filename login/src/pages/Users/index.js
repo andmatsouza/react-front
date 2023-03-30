@@ -43,6 +43,38 @@ export const Users = () => {
   useEffect(() => {
     getUsers();
   }, []);
+
+  const deleteUser = async (idUser) => {
+
+    const headers = {
+      'headers': {
+          'Authorization': "Bearer " + localStorage.getItem('token')          
+      }
+    }
+
+    await api.delete("/user/" + idUser, headers)
+    .then((response) => {
+      setStatus({
+        type: 'success',
+        mensagem: response.data.mensagem
+      });
+
+    }).catch((err) => {
+      if(err.response){
+        setStatus({
+          type: 'error',
+          mensagem: err.response.data.mensagem
+        });
+        getUsers();
+      }else{
+        setStatus({
+          type: 'error',
+          mensagem: "Erro: Tente mais tarde!"
+        });
+      }
+    });
+  }
+
   return(
     <>
 
@@ -59,7 +91,9 @@ export const Users = () => {
           <span>{user.name}</span><br />
           <span>{user.email}</span><br /><br />
           <Link to={"/view-user/" + user.id}><button type="button">Visualizar</button></Link><br /><br />
-          <Link to={"/edit-user/" + user.id}><button type="button">Editar</button></Link><br /><br /><hr />
+          <Link to={"/edit-user/" + user.id}><button type="button">Editar</button></Link><br /><br />
+          <Link to={"/edit-user/" + user.id}><button type="button" onClick={() => deleteUser(user.id)}>Apagar</button></Link><br /><br />
+          <hr />
         </div>
       ))}
     </>
