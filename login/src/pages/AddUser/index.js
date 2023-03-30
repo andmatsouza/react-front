@@ -124,7 +124,7 @@ export const AddUser = () => {
         <label>Senha*:</label>
         <input type="password" name="password" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={valueInput} /><br /><br />
 
-        * Compo obrigatório <br /><br />
+        * Campo obrigatório <br /><br />
 
         <button type="submit">Cadastrar</button>
       </form>

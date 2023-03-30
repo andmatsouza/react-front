@@ -38,12 +38,12 @@ export const EditUser = () => {
       .catch((err) => {
         if (err.response.data.erro) {
           setStatus({
-            type: "erro",
+            type: "error",
             mensagem: err.response.data.mensagem,
           });
         } else {
           setStatus({
-            type: "erro",
+            type: "error",
             mensagem: "Erro: Tente mais tarde!",
           });
         }
@@ -114,7 +114,7 @@ export const EditUser = () => {
     await schema.validate({name, email });
     return true;
 } catch (err) {      
-    setStatus({type: 'erro', mensagem: err.errors });
+    setStatus({type: 'error', mensagem: err.errors });
     return false;
 }
   }
@@ -130,14 +130,14 @@ export const EditUser = () => {
         });
       }else{
         setStatus({
-          type: 'erro',
+          type: 'error',
           mensagem: response.mensagem
         })
       }
 
     }else{
       setStatus({
-        type: 'erro',
+        type: 'error',
         mensagem: 'Erro: tente mais tarde!'
       })
     }
@@ -211,7 +211,7 @@ export const EditUser = () => {
         <br />
         <br />       
 
-        * Compo obrigatório <br /><br />
+        * Campo obrigatório <br /><br />
 
         <button type="submit">Salvar</button>
       </form>
