@@ -25,8 +25,9 @@ export const AddUser = () => {
     const addUser = async e => {
 
       e.preventDefault();
-
-      if (!validate()) return;     
+      //if (!validate()) return;
+      //se retornar tue segue o processamento, se retornar false para o processamento
+      if (!(await validate())) return;     
 
       const headers = {
         'headers': {
@@ -56,7 +57,7 @@ export const AddUser = () => {
       })
     }
 
-    function validate() {
+    /*function validate() {
       if(!user.name) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo nome1!"
       });
       if(!user.email) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo email1!"
@@ -67,18 +68,18 @@ export const AddUser = () => {
     });
 
       return true;
-    }
+    }*/
 
-    /*async function validate() {
+    async function validate() {
       let schema = yup.object({
-        password: yup.string("Erro: Necessário preencher o campo senha!")
-        .required("Erro: Necessário preencher o campo senha!")
-        .min(6,"Erro: A senha deve ter no mínimo 6 caracteres!"),
-        email: yup.string("Erro: Necessário preencher o campo e-mail!")
-        .email("Erro: Necessário preencher o campo e-mail!")
-        .required("Erro: Necessário preencher o campo e-mail!"),
-        name: yup.string("Erro: Necessário preencher o campo nome!")
-        .required("Erro: Necessário preencher o campo nome!")
+        password: yup.string("Erro: Necessário preencher o campo senha1!")
+        .required("Erro: Necessário preencher o campo senha1!")
+        .min(6,"Erro: A senha deve ter no mínimo 6 caracteres1!"),
+        email: yup.string("Erro: Necessário preencher o campo e-mail1!")
+        .email("Erro: Necessário preencher o campo e-mail1!")
+        .required("Erro: Necessário preencher o campo e-mail1!"),
+        name: yup.string("Erro: Necessário preencher o campo nome1!")
+        .required("Erro: Necessário preencher o campo nome1!")
         
       });
       
@@ -96,7 +97,7 @@ export const AddUser = () => {
       });
       return false;
   }
-    }*/
+    }
 
   return(
     <div>
