@@ -87,20 +87,7 @@ export const EditUser = () => {
         });
     };
     getUser();
-  }, [id]);
-
-  /*function validate() {
-    if(!name) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo nome1!"
-    });
-    if(!email) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo email1!"
-    });
-    if(!password) return setStatus({type: 'erro', mensagem: "Erro: Necessário preencher o campo senha1!"
-    });
-    if (password < 6) return setStatus({type: 'erro', mensagem: "Erro: A senha precisa ter pelo menos seis caracteres!"
-  });
-
-    return true;
-  }*/
+  }, [id]); 
 
   async function validate() {
     let schema = yup.object({     
