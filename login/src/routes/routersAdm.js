@@ -3,8 +3,11 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Context } from "../Context/AuthContext";
 
-
+//rotas não privadas
 import { Login } from "../pages/Login";
+import { AddUserLogin } from "../pages/AddUserLogin";
+
+//rotas privadas - precisa estar logado para acessar
 import { Dashboard } from "../pages/Dashboard";
 import { Users } from "../pages/Users";
 import { AddUser } from "../pages/AddUser";
@@ -24,6 +27,7 @@ export default function RoutesAdm() {
   return (
     <Routes>
       <Route exact path="/" element={<Login />} />
+      <Route exact path="/add-user-login" element={<AddUserLogin />} />
 
       <Route
         exact

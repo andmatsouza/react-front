@@ -9,7 +9,7 @@ import { Menu } from "../../components/Menu";
 export const Users = () => {
 
   const { state } = useLocation();
-  console.log(state);
+  //console.log(state);
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState("");

@@ -10,10 +10,12 @@ import { Context } from '../../Context/AuthContext';
 
 export const Login = () =>{
 
+    const { state } = useLocation();
+ 
     //usado para redirecionar página
     const navegate = useNavigate();
 
-    const { authenticated, signIn } = useContext(Context);
+    const { signIn } = useContext(Context);
 
     //console.log("Situação do usuário na página login: " + authenticated);
 
@@ -24,8 +26,8 @@ export const Login = () =>{
     });
 
     const [status, setStatus] = useState({
-        type: '',
-        mensagem: '',
+        type: state ? state.type : "",
+        mensagem: state ? state.mensagem : "",
         loading: false,
     });
 
@@ -93,8 +95,9 @@ export const Login = () =>{
                 <input type="password" name="password" placeholder="Digite a senha" autoComplete='on' onChange={valorInput} /><br /><br />
 
                 
-                {status.loading ? <button type="submit" disabled>Acessando...</button> : <button type="submit">Acessar</button>}
+                {status.loading ? <button type="submit" disabled>Acessando...</button> : <button type="submit">Acessar</button>}<br /><br />                
             </form>
+            <Link to="/add-user-login">Cadastrar</Link>
         </div>
     );
 };
