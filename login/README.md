@@ -24,3 +24,8 @@ Realizar chamada para API
 
 Validar campo do formulário
 ### npm install --save yup
+
+
+OBS: Parou na implementação do e-mail único.
+
+POC_FRONTEND - V1
