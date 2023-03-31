@@ -19,7 +19,7 @@ export const EditUser = () => {
   const editUser = async (e) => {
     e.preventDefault();
 
-    if (!(await validate())) return;
+    if (!validate()) return;
 
     const headers = {
       herders: {
@@ -87,20 +87,20 @@ export const EditUser = () => {
     getUser();
   }, [id]);
 
-  /*function validate() {
-    if(!name) return setStatus({type: 'erro', mensagem: "Erro: Necessário preencher o campo nome!"
+  function validate() {
+    if(!name) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo nome1!"
     });
-    if(!email) return setStatus({type: 'erro', mensagem: "Erro: Necessário preencher o campo email!"
+    if(!email) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo email1!"
     });
-    if(!password) return setStatus({type: 'erro', mensagem: "Erro: Necessário preencher o campo senha!"
-    });
-    if (password < 6) return setStatus({type: 'erro', mensagem: "Erro: A senha precisa ter pelo menos seis caracteres!"
-  });
+    //if(!password) return setStatus({type: 'erro', mensagem: "Erro: Necessário preencher o campo senha1!"
+    //});
+    //if (password < 6) return setStatus({type: 'erro', mensagem: "Erro: A senha precisa ter pelo menos seis caracteres!"
+ // });
 
     return true;
-  }*/
+  }
 
-  async function validate() {
+  /*async function validate() {
     let schema = yup.object({     
       email: yup.string("Erro: Necessário preencher o campo e-mail!")
       .email("Erro: Necessário preencher o campo e-mail!")
@@ -117,7 +117,7 @@ export const EditUser = () => {
     setStatus({type: 'error', mensagem: err.errors });
     return false;
 }
-  }
+  }*/
 
   const deleteUser = async (idUser) => {
     const response = await servDeleteUser(idUser);

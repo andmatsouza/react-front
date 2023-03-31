@@ -26,7 +26,7 @@ export const AddUser = () => {
 
       e.preventDefault();
 
-      //if (!(await validate())) return;     
+      if (!validate()) return;     
 
       const headers = {
         'headers': {
@@ -56,18 +56,18 @@ export const AddUser = () => {
       })
     }
 
-    /*function validate() {
-      if(!user.name) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo nome!"
+    function validate() {
+      if(!user.name) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo nome1!"
       });
-      if(!user.email) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo email!"
+      if(!user.email) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo email1!"
       });
-      if(!user.password) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo senha!"
+      if(!user.password) return setStatus({type: 'error', mensagem: "Erro: Necessário preencher o campo senha1!"
       });
-      if (user.password < 6) return setStatus({type: 'error', mensagem: "Erro: A senha precisa ter pelo menos seis caracteres!"
+      if (user.password < 6) return setStatus({type: 'error', mensagem: "Erro: A senha precisa ter pelo menos seis caracteres1!"
     });
 
       return true;
-    }*/
+    }
 
     /*async function validate() {
       let schema = yup.object({
