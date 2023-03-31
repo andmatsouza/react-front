@@ -5,20 +5,21 @@ import * as yup from 'yup';
 import {Menu} from '../../components/Menu';
 import api from "../../config/configApi";
 
-export const EditProfile = () => {
-  
+export const EditProfilePassword = () => {
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");  
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState(''); 
+  
+ 
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
   });
 
-  const editProfile = async (e) => {
+  const editProfilePassword = async (e) => {
     e.preventDefault();
-
-    //if (!validate()) return;
+    
     //se retornar tue segue o processamento, se retornar false para o processamento
     if (!(await validate())) return;     
 
@@ -27,10 +28,11 @@ export const EditProfile = () => {
         Authorizaton: "Bearer " + localStorage.getItem("token"),
       },
     };
+   // console.log("password" + password);
 
     await api
-      .put("/edit-profile", { name, email }, headers)
-      .then((response) => {
+      .put("/edit-profile-password", { password }, headers)
+      .then((response) => {        
         setStatus({
           type: "redSuccess",
           mensagem: response.data.mensagem,
@@ -86,20 +88,19 @@ export const EditProfile = () => {
         });
     };
     getUser();
-  }, []); 
+  }, []);
 
   async function validate() {
-    let schema = yup.object({     
-      email: yup.string("Erro: Necessário preencher o campo e-mail1!")
-      .email("Erro: Necessário preencher o campo e-mail1!")
-      .required("Erro: Necessário preencher o campo e-mail1!"),
-      name: yup.string("Erro: Necessário preencher o campo nome1!")
-      .required("Erro: Necessário preencher o campo nome1!")
+    let schema = yup.object({
+
+      password: yup.string("Erro: Necessário preencher o campo senha1!")
+      .required("Erro: Necessário preencher o campo senha1!")
+      .min(6,"Erro: A senha deve ter no mínimo 6 caracteres1!")
       
     });
     
   try {
-    await schema.validate({name, email});
+    await schema.validate({password});
     return true;
 } catch (err) {      
     setStatus({type: 'error', mensagem: err.errors });
@@ -111,10 +112,11 @@ export const EditProfile = () => {
     <div>
       <Menu />
      
-      <h1>Editar Perfil</h1>
+      <h1>Editar Senha</h1>
 
-      <Link to="/view-profile" reloadDocument><button type="button">Perfil</button></Link>{" "}     
-      <br />
+      
+      <Link to="/view-profile" reloadDocument><button type="button">Perfil</button></Link>{" "}    
+      
 
       {status.type === "redWarning" ? (
         <Navigate
@@ -148,26 +150,13 @@ export const EditProfile = () => {
 
       <hr />
 
-      <form onSubmit={editProfile}>
-        <label>Nome*:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nome completo do usuário"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <br />
+      <form onSubmit={editProfilePassword}>
 
-        <label>E-mail*:</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Melhor e-mail do usuário"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <label>Nome: {name}</label><br /> 
+      <label>E-mail: {email}</label><br /> <br /> 
+
+      <label>Senha*:</label>
+        <input type="password" name="password" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={text => setPassword(text.target.value)} />
         <br />
         <br />       
 
