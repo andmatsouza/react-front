@@ -1,23 +1,16 @@
-import React, {useContext} from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
 
-import { Context} from '../../Context/AuthContext';
 
-export const Dashboard = () => {
- 
+import {Menu} from '../../components/Menu';
 
-  const { authenticated, handleLogout } = useContext(Context);
-  console.log("Situação do usuário na página dashboard: " + authenticated);
+export const Dashboard = () => {     
 
   return(
     <div>
 
-      <Link to="/dashboard">Dashboard</Link><br />
-      <Link to="/users">Usuários</Link><br />
-     <Link to="/view-profile">Perfil</Link><br />
+     <Menu />
       <h1>Dashboard</h1>
-      
-      <button type='button' onClick={handleLogout}>Sair</button>
+
     </div>
   );
 }

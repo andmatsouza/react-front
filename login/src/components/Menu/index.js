@@ -9,11 +9,10 @@ export const Menu = () => {
 
   return(
     <div>
-      <Link to="/dasboard">Dasboard</Link><br />
+      <Link to="/dashboard">Dashboard</Link><br />
       <Link to="/users" reloadDocument>Usuários</Link><br />
-      <Link to="/view-profile">Perfil</Link><br />
-      <Link to="/cursos" reloadDocument>Cursos</Link><br />
+      <Link to="/view-profile">Perfil</Link><br />      
       <Link to="#" onClick={handleLogout}>Sair</Link><br />      
     </div>
-  )
+  ) 
 }
