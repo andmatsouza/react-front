@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link,Navigate, useLocation } from "react-router-dom";
 
 import {Menu} from '../../components/Menu';
 
 import api from "../../config/configApi";
 
 export const ViewProfile = () => {
+
+  const { state } = useLocation()
+
   const [data, setData] = useState("");
+  //se o state for true pega do state.type do componente Navigate do EditProfile (success)
   const [status, setStatus] = useState({
-    type: "",
-    mensagem: "",
+    type: state ? state.type : "",
+    mensagem: state ? state.mensagem : "",
   });  
 
   useEffect(() => {
@@ -52,6 +56,7 @@ export const ViewProfile = () => {
     <div>
       <Menu />
       <h1>Perfil</h1>
+      <Link to="/edit-profile" reloadDocument><button type="button">Editar</button></Link>{" "} 
      
       {status.type === "redErro" ? (
         <Navigate
