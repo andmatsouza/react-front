@@ -26,7 +26,7 @@ export const AddUser = () => {
 
       e.preventDefault();
 
-      if (!(await validate())) return;     
+      //if (!(await validate())) return;     
 
       const headers = {
         'headers': {
@@ -69,7 +69,7 @@ export const AddUser = () => {
       return true;
     }*/
 
-    async function validate() {
+    /*async function validate() {
       let schema = yup.object({
         password: yup.string("Erro: Necessário preencher o campo senha!")
         .required("Erro: Necessário preencher o campo senha!")
@@ -96,7 +96,7 @@ export const AddUser = () => {
       });
       return false;
   }
-    }
+    }*/
 
   return(
     <div>
