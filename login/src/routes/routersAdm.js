@@ -3,9 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Context } from "../Context/AuthContext";
 
-//rotas não privadas
+//rotas públicas
 import { Login } from "../pages/Login";
 import { AddUserLogin } from "../pages/AddUserLogin";
+import { RecoverPassword } from "../pages/RecoverPassword";
 
 //rotas privadas - precisa estar logado para acessar
 import { Dashboard } from "../pages/Dashboard";
@@ -28,6 +29,7 @@ export default function RoutesAdm() {
     <Routes>
       <Route exact path="/" element={<Login />} />
       <Route exact path="/add-user-login" element={<AddUserLogin />} />
+      <Route exact path="/recover-password" element={<RecoverPassword />} />
 
       <Route
         exact
