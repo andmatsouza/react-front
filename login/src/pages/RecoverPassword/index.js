@@ -1,24 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 //substituiu a useHistory
-import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 //conexão com API
 import  api from '../../config/configApi';
 
-//import { Context } from '../../Context/AuthContext';
-
 export const RecoverPassword = () =>{
-
-    //const { state } = useLocation();
- 
-    //usado para redirecionar página
-   // const navegate = useNavigate();
-
-   // const { signIn } = useContext(Context);
-
-    //console.log("Situação do usuário na página login: " + authenticated);
-
+   
     //hook usado para setar valores em um objeto
     const [user, setUser] = useState({
         email: '',

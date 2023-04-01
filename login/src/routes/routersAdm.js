@@ -18,6 +18,7 @@ import { EditUserPassword } from "../pages/EditUserPassword";
 import { ViewProfile } from "../pages/ViewProfile";
 import { EditProfile } from "../pages/EditProfile";
 import { EditProfilePassword } from "../pages/EditProfilePassword";
+import { UpdatePassword } from "../pages/UpdatePassword";
 
 function PrivateRoute({ children }) {
   const { authenticated } = useContext(Context);
@@ -30,6 +31,7 @@ export default function RoutesAdm() {
       <Route exact path="/" element={<Login />} />
       <Route exact path="/add-user-login" element={<AddUserLogin />} />
       <Route exact path="/recover-password" element={<RecoverPassword />} />
+      <Route exact path="/update-password/:key" element={<UpdatePassword />} />
 
       <Route
         exact
