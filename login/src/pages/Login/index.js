@@ -49,7 +49,7 @@ export const Login = () =>{
        //requisição post p API
        await api.post("/login", user, {headers})
        .then((response) => {
-        //console.log(response)
+        console.log(response)
         setStatus({
             /*type: 'success',
             mensagem: response.data.mensagem,*/
@@ -57,6 +57,8 @@ export const Login = () =>{
         });
         //salva o token no localStorage do navegador
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('name', response.data.user.name);
+        localStorage.setItem('image', response.data.user.image);
         //função chamada do contex 
         signIn(true);
         //caso login com sucesso redireciona p página dashboard
