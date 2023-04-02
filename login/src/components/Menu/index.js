@@ -9,9 +9,9 @@ export const Menu = () => {
 
   return(
     <div>
-      <Link to="/dashboard"reloadDocument>Dashboard</Link><br />
-      <Link to="/users" reloadDocument>Usuários</Link><br />
-      <Link to="/view-profile" reloadDocument>Perfil</Link><br />      
+      <Link to="/dashboard"reloadDocument>Dashboard</Link>{" "}
+      <Link to="/users" reloadDocument>Usuários</Link>{" "}
+      <Link to="/view-profile" reloadDocument>Perfil</Link>{" "}      
       <Link to="#" onClick={handleLogout}>Sair</Link><br />      
     </div>
   ) 
