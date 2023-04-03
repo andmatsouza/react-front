@@ -63,14 +63,14 @@ body {
 
 .wrapper-login {
   width: 100%;
-  background: var(--second-color2);
+  background: var(--second-color);
   border-radius: 5px;
   box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper-login .title {
   height: 90px;
-  background: var(--main-bg-color2);
+  background: var(--main-bg-color);
   border-radius: 5px 5px 0 0;
   color: var(--main-color);
   font-size: 30px;
@@ -112,7 +112,7 @@ body {
   height: 100%;
   color: var(--main-color);
   font-size: 18px;
-  background: var(--second-bg-color2);
+  background: var(--second-bg-color);
   border: 1px solid var(--active-color);
   border-radius: 5px 0 0 5px;
   display: flex;
@@ -120,13 +120,29 @@ body {
   justify-content: center;
 }
 
+/*inicio - criado para o formulário de cadastro*/
+.label-add-cad {
+  position: absolute;
+  width: 55px;
+  height: 100%;
+  color: var(--main-color);
+  font-size: 18px;
+  background: var(--second-bg-color);
+  border: 1px solid var(--active-color);
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*fim - criado para o formulário de cadastro*/
+
 .wrapper-login .form-login .button .button-login {
   color: var(--main-color);
   font-size: 20px;
   font-weight: 300;
   padding-left: 0px;
- /* background: var(--main-bg-color2);*/
-  background: var(--second-bg-color2);
+  background: var(--main-bg-color);
+  /*background: var(--second-bg-color2);*/
   border: 1px solid var(--active-color);
   cursor: pointer;
 }

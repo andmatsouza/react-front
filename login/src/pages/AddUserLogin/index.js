@@ -83,14 +83,13 @@ export const AddUserLogin = () => {
   }
 
   return (
-    <div>
-      <h1>Cadastrar Usuário</h1>
-
-      {status.type === "error" ? (
-        <p style={{ color: "#ff0000" }}>{status.mensagem}</p>
-      ) : (
-        ""
-      )}
+    <div className="d-flex">
+      <div className="container-login">
+      <div className="wrapper-login">
+      <div className="title">
+                <span>Cadastrar Usuário</span>
+      </div>
+      
       {status.type === "redSuccess" ? (
         <Navigate
           to="/"
@@ -103,26 +102,33 @@ export const AddUserLogin = () => {
         ""
       )}
 
-      <form onSubmit={addUser}>
-        <label>Nome*:</label>
+      <form onSubmit={addUser} className="form-login">
+
+      {status.type === "error" ? (
+        <p className="alert-danger">{status.mensagem}</p>
+      ) : (
+        ""
+      )}
+        <div className="row">
+        <label className="label-add-cad">Nome</label>
         <input
           type="text"
           name="name"
           placeholder="Nome completo do usuário"
           onChange={valueInput}
         />
-        <br />
-        <br />
-        <label>E-mail*:</label>
+        </div>
+        <div className="row" >
+        <label className="label-add-cad">E-mail</label>
         <input
           type="email"
           name="email"
           placeholder="Melhor e-mail do usuário"
           onChange={valueInput}
         />
-        <br />
-        <br />
-        <label>Senha*:</label>
+        </div>
+        <div className="row">
+        <label className="label-add-cad">Senha</label>
         <input
           type="password"
           name="password"
@@ -130,13 +136,18 @@ export const AddUserLogin = () => {
           autoComplete="on"
           onChange={valueInput}
         />
-        <br />
-        <br />
-        * Campo obrigatório <br />
-        <br />
-        <button type="submit">Cadastrar</button><br /><br /> 
+        </div>
+        
+        <div className="row button">
+        <button type="submit" className='button-login'>Cadastrar</button>
+        </div>
+        <div className="signup-link">
+        <Link to="/" className='link-pg-login'>Login</Link>
+        </div>
       </form>
-      <Link to="/">Login</Link>
+     
+      </div>
+      </div>
     </div>
   );
 };

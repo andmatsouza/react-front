@@ -114,7 +114,7 @@ export const Login = () =>{
                 <div className="signup-link">
                 <Link to="/add-user-login" className='link-pg-login'>Cadastrar</Link>{" - "}
                 <Link to="/recover-password" className='link-pg-login'>Esqueceu a senha?</Link>
-            </div>              
+                </div>              
             </form>                      
             </div>
             </div>
