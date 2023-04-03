@@ -21,7 +21,7 @@
   --main-bg-color: #192039;
   --main-bg-color2: #00B01D;
   --second-bg-color: #1e2746;
-  --second-bg-color2: #d2322d;
+  --second-bg-color2: #d4d4d4;
   --second-bg-color3: #FFD310;
   
   --third-bg-color: #3a7afe;
@@ -127,7 +127,7 @@ body {
   height: 100%;
   color: var(--main-color);
   font-size: 18px;
-  background: var(--second-bg-color);
+  background: var(--second-bg-color2);
   border: 1px solid var(--active-color);
   border-radius: 5px 0 0 5px;
   display: flex;
