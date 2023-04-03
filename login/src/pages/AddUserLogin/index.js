@@ -110,7 +110,7 @@ export const AddUserLogin = () => {
         ""
       )}
         <div className="row">
-        <label className="label-add-cad">Nome</label>
+        <i className="fas fa-user"></i>
         <input
           type="text"
           name="name"
@@ -119,7 +119,7 @@ export const AddUserLogin = () => {
         />
         </div>
         <div className="row" >
-        <label className="label-add-cad">E-mail</label>
+        <i className="fas fa-envelope"></i>
         <input
           type="email"
           name="email"
@@ -128,7 +128,7 @@ export const AddUserLogin = () => {
         />
         </div>
         <div className="row">
-        <label className="label-add-cad">Senha</label>
+        <i className="fas fa-lock"></i>
         <input
           type="password"
           name="password"

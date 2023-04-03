@@ -88,7 +88,7 @@ export const RecoverPassword = () =>{
                 {status.loading ? <p className="alert-success">Validando...</p> : ""}
 
                 <div className="row">
-                <label className="label-add-cad">E-mail</label>
+                <i className="fas fa-envelope"></i>
                 <input type="text" name="email" placeholder="Digite o e-mail" onChange={valorInput} />
                 </div>
                 <div className="row button">

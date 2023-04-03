@@ -120,22 +120,6 @@ body {
   justify-content: center;
 }
 
-/*inicio - criado para o formulário de cadastro*/
-.label-add-cad {
-  position: absolute;
-  width: 60px;
-  height: 100%;
-  color: var(--main-color);
-  font-size: 18px;
-  background: var(--second-bg-color2);
-  border: 1px solid var(--active-color);
-  border-radius: 5px 0 0 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/*fim - criado para o formulário de cadastro*/
-
 .wrapper-login .form-login .button .button-login {
   color: var(--main-color);
   font-size: 20px;
