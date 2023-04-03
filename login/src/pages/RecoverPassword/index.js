@@ -62,11 +62,12 @@ export const RecoverPassword = () =>{
     }
 
     return(
-        <div>
-            <h1>Recuperar Senha</h1>
-            {status.type === 'error' ? <p>{status.mensagem}</p> : ""}
-            {status.type === 'success' ? <p>{status.mensagem}</p> : ""}
-            {status.loading ? <p>Validando...</p> : ""}
+        <div className="d-flex">
+        <div className="container-login">
+        <div className="wrapper-login">
+        <div className="title">
+            <span>Recuperar Senha</span>
+        </div>           
 
             {status.type === "redSuccess" ? (
             <Navigate
@@ -80,14 +81,27 @@ export const RecoverPassword = () =>{
                     ""
                 )}
 
-            <form onSubmit={recoverPass}>
-                <label>Usuário: </label>
-                <input type="text" name="email" placeholder="Digite o e-mail" onChange={valorInput} /><br /><br />
+            <form onSubmit={recoverPass} className="form-login">
 
-                {status.loading ? <button type="submit" disabled>Enviando...</button> : <button type="submit">Enviar</button>}<br /><br />                
+                {status.type === 'error' ? <p className="alert-danger">{status.mensagem}</p> : ""}
+                {status.type === 'success' ? <p className="alert-success">{status.mensagem}</p> : ""}
+                {status.loading ? <p className="alert-success">Validando...</p> : ""}
+
+                <div className="row">
+                <label className="label-add-cad">E-mail</label>
+                <input type="text" name="email" placeholder="Digite o e-mail" onChange={valorInput} />
+                </div>
+                <div className="row button">
+                {status.loading ? <button type="submit" className='button-login' disabled>Enviando...</button> : <button type="submit" className='button-login'>Enviar</button>}
+                </div>  
+                <div className="signup-link">
+                <Link to="/add-user-login" className='link-pg-login'>Cadastrar</Link>{" "}
+                - Lembrou a senha?<Link to="/" className='link-pg-login'>Clique Aqui!</Link>
+                </div>         
             </form>
-            <Link to="/add-user-login">Cadastrar</Link>{" "}
-            - Lembrou a senha?<Link to="/">Clique Aqui!</Link>
+            
+        </div>
+        </div>
         </div>
     );
 };
