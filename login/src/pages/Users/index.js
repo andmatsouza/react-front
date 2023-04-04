@@ -3,11 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 
 import { servDeleteUser } from "../../services/servDeleteUser";
 
+import useDropdownList from "../../hooks/useDropdownList";
+
 import api from "../../config/configApi";
 import { Navbar } from "../../components/Navbar";
 import { Sidebar } from "../../components/Sidebar";
 
 export const Users = () => {
+  const { actionDropdown, closeDropdownAction } = useDropdownList();
   const { state } = useLocation();
   //console.log(state);
 
@@ -86,6 +89,19 @@ export const Users = () => {
               </div>
             </div>
 
+            <div className="alert-content-adm">
+            {status.type === "danger" ? (
+                <p className="alert-danger">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+              {status.type === "success" ? (
+                <p className="alert-success">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+            </div>
+
             <table className="table-list">
               <thead className="list-head">
                 <tr>
@@ -105,25 +121,15 @@ export const Users = () => {
                       {user.email}
                     </td>
                     <td className="list-body-content">
-                      <Link to={"/view-user/" + user.id}>
-                        <button type="button" className="btn-primary">
-                          Visualizar
-                        </button>
-                      </Link>{" "}
-                      <Link to={"/edit-user/" + user.id}>
-                        <button type="button" className="btn-warning">
-                          Editar
-                        </button>
-                      </Link>{" "}
-                      <Link to={"#"}>
-                        <button
-                          type="button"
-                          onClick={() => deleteUser(user.id)}
-                          className="btn-danger"
-                        >
-                          Apagar
-                        </button>
-                      </Link>
+                      <div className="dropdown-action">
+                        <button onClick={() => { closeDropdownAction(); actionDropdown(user.id) }} className="dropdown-btn-action">Ações</button>
+                        <div id={"actionDropdown" + user.id} class="dropdown-action-item">
+                          <Link to={"/view-user/" + user.id}>Visualizar</Link>
+                          <Link to={"/edit-user/" + user.id}>Editar</Link>
+                          <Link to={"#"} onClick={() => deleteUser(user.id)}>Apagar</Link>
+                        </div>
+                      </div>
+
                     </td>
                   </tr>
                 ))}
@@ -133,13 +139,13 @@ export const Users = () => {
               <div className="pagination">
                 <Link to="#" onClick={() => getUsers(1)}><i className="fas fa-angle-double-left"></i></Link>
 
-                {page !== 1 ? <Link to="#" onClick={() => getUsers(page - 1)}>{page -1}</Link> : ""}
-               
-               
+                {page !== 1 ? <Link to="#" onClick={() => getUsers(page - 1)}>{page - 1}</Link> : ""}
+
+
                 <Link to="#" className="active">{page}</Link>
 
                 {page + 1 <= lastPage ? <Link to="#" onClick={() => getUsers(page + 1)}>{page + 1}</Link> : ""}
-               
+
                 <Link to="#" onClick={() => getUsers(lastPage)}><i className="fas fa-angle-double-right"></i></Link>
               </div>
             </div>
