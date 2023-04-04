@@ -135,27 +135,27 @@ export const AddUser = () => {
 
             <div className="content-adm">
               <form onSubmit={addUser} className="form-adm">
-                <div class="row-input">
-                  <div class="column">
-                    <label class="title-input">Nome</label>
-                    <input type="text" name="name" id="name" class="input-adm" placeholder="Nome completo do usuário" onChange={valueInput} />
+                <div className="row-input">
+                  <div className="column">
+                    <label className="title-input">Nome</label>
+                    <input type="text" name="name" id="name" className="input-adm" placeholder="Nome completo do usuário" onChange={valueInput} />
                   </div>
                 </div>
 
-                <div class="row-input">                
+                <div className="row-input">                
 
-                  <div class="column">
-                    <label class="title-input">E-mail</label>
-                    <input type="email" name="email" id="email" class="input-adm" placeholder="Melhor e-mail do usuário" onChange={valueInput} />
+                  <div className="column">
+                    <label className="title-input">E-mail</label>
+                    <input type="email" name="email" id="email" className="input-adm" placeholder="Melhor e-mail do usuário" onChange={valueInput} />
                   </div>
                   
-                  <div class="column">
+                  <div className="column">
                     <label class="title-input">Senha</label>
-                    <input type="password" name="password" id="password" class="input-adm" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={valueInput} />
+                    <input type="password" name="password" id="password" className="input-adm" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={valueInput} />
                   </div>
                   
                 </div>
-                <button type="submit" class="btn-success">Cadastrar</button>
+                <button type="submit" className="btn-success">Cadastrar</button>
               </form>
             </div>
 
