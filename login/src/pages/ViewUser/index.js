@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 
-import {Navbar} from '../../components/Navbar';
-import {Sidebar} from '../../components/Sidebar';
+import { Navbar } from "../../components/Navbar";
+import { Sidebar } from "../../components/Sidebar";
 
 import { servDeleteUser } from "../../services/servDeleteUser";
 import api from "../../config/configApi";
@@ -27,7 +27,7 @@ export const ViewUser = (props) => {
         .get("/user/" + id, headers)
         .then((response) => {
           if (response.data.user) {
-            setEndImg(response.data.endImage)
+            setEndImg(response.data.endImage);
             setData(response.data.user);
           } else {
             setStatus({
@@ -80,66 +80,108 @@ export const ViewUser = (props) => {
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar active="users"/>
-      <h1>Detalhes do Usuário</h1>
-      <Link to="/users">
-        <button type="button">Listar</button>
-      </Link>{" "}
-      <Link to={"/edit-user/" + data.id}>
-        <button type="button">Editar</button>
-      </Link>{" "}
-      <Link to={"/edit-user-password/" + data.id}>
-        <button type="button">Editar Senha</button>
-      </Link>{" "}
-      <Link to={"/edit-user-image/" + data.id}><button type="button">Editar Imagem</button></Link>{" "}
-      <Link to={"#"}>
-        <button type="button" onClick={() => deleteUser(data.id)} >
-          Apagar
-        </button>
-      </Link>{" "}
-      
+        <Sidebar active="users" />
 
-      {status.type === "redSuccess" ? (
-        <Navigate
-          to="/users"
-          state={{
-            type: "success",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+        <div className="wrapper">
+          <div className="row">
+            <div className="top-content-adm">
+              <span className="title-content">Visualizar Usuário</span>
+              <div className="top-content-adm-right">
+                <Link to="/users">
+                  <button type="button" className="btn-info">
+                    Listar
+                  </button>
+                </Link>{" "}
+                <Link to={"/edit-user/" + data.id}>
+                  <button type="button" className="btn-warning">
+                    Editar
+                  </button>
+                </Link>{" "}
+                <Link to={"/edit-user-password/" + data.id}>
+                  <button type="button" className="btn-warning">
+                    Editar Senha
+                  </button>
+                </Link>{" "}
+                <Link to={"/edit-user-image/" + data.id}>
+                  <button type="button" className="btn-warning">
+                    Editar Imagem
+                  </button>
+                </Link>{" "}
+                <Link to={"#"}>
+                  <button
+                    type="button"
+                    className="btn-danger"
+                    onClick={() => deleteUser(data.id)}
+                  >
+                    Apagar
+                  </button>
+                </Link>{" "}
+              </div>
+            </div>
 
+            <div className="alert-content-adm">
+              {status.type === "redSuccess" ? (
+                <Navigate
+                  to="/users"
+                  state={{
+                    type: "success",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
+              {status.type === "redErro" ? (
+                <Navigate
+                  to="/users"
+                  state={{
+                    type: "error",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
+              {status.type === "success" ? (
+                <p className="alert-success">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+            </div>
 
-      {status.type === "redErro" ? (
-        <Navigate
-          to="/users"
-          state={{
-            type: "error",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+            <div class="content-adm">
+              <div class="view-det-adm">
+                <span class="view-adm-title">Imagem:</span>
+                <span class="view-adm-info">
+                  {
+                    <img
+                      src={endImg}
+                      alt="Imagem do usuário"
+                      width="150"
+                      height="150"
+                    />
+                  }
+                </span>
+              </div>
 
+              <div class="view-det-adm">
+                <span class="view-adm-title">ID:</span>
+                <span class="view-adm-info">{data.id}</span>
+              </div>
 
-      {status.type === "success" ? (
-        <p style={{ color: "green" }}>{status.mensagem}</p>
-      ) : (
-        ""
-      )}
-      <hr />
-      <span>{data.id}</span>
-      <br />
-      <span>{<img src={endImg} alt="Imagem do usuário" width="150" height="150" />}</span>
-      <br />
-      <span>{data.name}</span>
-      <br />
-      <span>{data.email}</span>
-      <br />
-    </div>
+              <div class="view-det-adm">
+                <span class="view-adm-title">Nome:</span>
+                <span class="view-adm-info">{data.name}</span>
+              </div>
+
+              <div class="view-det-adm">
+                <span class="view-adm-title">E-mail:</span>
+                <span class="view-adm-info">{data.email}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
