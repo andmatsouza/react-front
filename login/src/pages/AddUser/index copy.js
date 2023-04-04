@@ -105,62 +105,44 @@ export const AddUser = () => {
       <div className="content">
         <Sidebar active="users" />
 
-        <div className="wrapper">
-          <div className="row">
-
-            <div className="top-content-adm">
-              <span className="title-content">Cadastrar Usuário</span>
-              <div className="top-content-adm-right">
-                <Link to="/users" reloadDocument>
-                  <button type="button" className="btn-info">Listar</button>
-                </Link>
+        <div class="wrapper">
+          <div class="row">
+            <div class="top-content-adm">
+              <span class="title-content">Cadastrar Usuário</span>
+              <div class="top-content-adm-right">
+                <button type="button" class="btn-info">Listar</button>
               </div>
             </div>
-
-            <div className="alert-content-adm">
-              {status.type === "error" ? (
-                <p className="alert-danger">{status.mensagem}</p>
-              ) : (
-                ""
-              )}
-              {status.type === 'success' ?
-
-                <Navigate to="/users" state={{
-                  type: "success",
-                  mensagem: status.mensagem
-                }} />
-
-                : ""}
-            </div>
-
-            <div className="content-adm">
-              <form onSubmit={addUser} className="form-adm">
-                <div class="row-input">
-                  <div class="column">
-                    <label class="title-input">Nome</label>
-                    <input type="text" name="name" id="name" class="input-adm" placeholder="Nome completo do usuário" onChange={valueInput} />
-                  </div>
-                </div>
-
-                <div class="row-input">                
-
-                  <div class="column">
-                    <label class="title-input">E-mail</label>
-                    <input type="email" name="email" id="email" class="input-adm" placeholder="Melhor e-mail do usuário" onChange={valueInput} />
-                  </div>
-                  
-                  <div class="column">
-                    <label class="title-input">Senha</label>
-                    <input type="password" name="password" id="password" class="input-adm" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={valueInput} />
-                  </div>
-                  
-                </div>
-                <button type="submit" class="btn-success">Cadastrar</button>
-              </form>
-            </div>
-
           </div>
         </div>
+
+        <h1>Cadastrar Usuário</h1>
+        <Link to="/users" reloadDocument><button type="button">Listar</button></Link><br />
+
+        {status.type === 'error' ? <p style={{ color: "#ff0000" }}>{status.mensagem}</p> : ""}
+        {status.type === 'success' ?
+
+          <Navigate to="/users" state={{
+            type: "success",
+            mensagem: status.mensagem
+          }} />
+
+          : ""}
+        <hr />
+        <form onSubmit={addUser}>
+          <label>Nome*:</label>
+          <input type="text" name="name" placeholder="Nome completo do usuário" onChange={valueInput} /><br /><br />
+
+          <label>E-mail*:</label>
+          <input type="email" name="email" placeholder="Melhor e-mail do usuário" onChange={valueInput} /><br /><br />
+
+          <label>Senha*:</label>
+          <input type="password" name="password" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={valueInput} /><br /><br />
+
+          * Campo obrigatório <br /><br />
+
+          <button type="submit">Cadastrar</button>
+        </form>
       </div>
     </div>
   )
