@@ -80,7 +80,7 @@ export const ViewUser = (props) => {
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar />
+          <Sidebar active="users"/>
       <h1>Detalhes do Usuário</h1>
       <Link to="/users">
         <button type="button">Listar</button>

@@ -137,7 +137,7 @@ export const EditUser = () => {
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar />
+          <Sidebar active="users" />
       <h1>Editar Ususário</h1>
 
       <Link to="/users" reloadDocument><button type="button">Listar</button></Link>{" "}

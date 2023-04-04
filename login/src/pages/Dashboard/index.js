@@ -8,7 +8,7 @@ export const Dashboard = () => {
     <div>
       <Navbar/>
       <div className="content">
-          <Sidebar />
+          <Sidebar active="dashboard" />
           <h1>Dashboard</h1>
       </div>
     </div>

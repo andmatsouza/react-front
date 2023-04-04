@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 
-import { Menu } from '../../components/Menu';
+import {Navbar} from '../../components/Navbar';
+import {Sidebar} from '../../components/Sidebar';
 import api from '../../config/configApi';
 import { servDeleteUser } from '../../services/servDeleteUser';
 
@@ -113,8 +114,9 @@ export const EditUserImage = (props) => {
 
     return (
         <div>
-            <Menu />
-
+            <Navbar />
+            <div className="content">
+          <Sidebar active="users"/>
             <h1>Editar Usuário</h1>
 
             <Link to="/users"><button type="button">Listar</button></Link>{" "}
@@ -166,7 +168,7 @@ export const EditUserImage = (props) => {
 
                 <button type="submit">Salvar</button>
             </form>
-
+            </div>
         </div>
     )
 }

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-import {Menu} from '../../components/Menu';
+import {Navbar} from '../../components/Navbar';
+import {Sidebar} from '../../components/Sidebar';
 import api from "../../config/configApi";
 
 export const EditProfileImage = () => {
@@ -99,8 +100,9 @@ export const EditProfileImage = () => {
   
   return (
     <div>
-      <Menu />
-     
+      <Navbar />
+      <div className="content">
+          <Sidebar active="profile" />
       <h1>Editar Foto Perfil</h1>      
 
       {status.type === "redSuccess" ? (
@@ -145,6 +147,7 @@ export const EditProfileImage = () => {
 
         <button type="submit">Salvar</button>
       </form> 
+    </div>
     </div>
   );
 };

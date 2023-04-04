@@ -60,7 +60,7 @@ export const ViewProfile = () => {
     <div>
       <Navbar/>
       <div className="content">
-          <Sidebar />
+          <Sidebar active="profile"/>
       <h1>Perfil</h1>
       <Link to="/edit-profile" reloadDocument><button type="button">Editar</button></Link>{" "} 
       <Link to="/edit-profile-password" reloadDocument><button type="button">Editar Senha</button></Link>{" "} 

@@ -75,7 +75,7 @@ export const Users = () => {
 <div>
       <Navbar/>
     <div className="content">
-          <Sidebar />
+          <Sidebar active="users"/>
       <h1>Listar Usuários</h1>
       <Link to="/add-user">Cadastrar</Link><br /><hr />
       {status.type === 'error' ? <p>{status.mensagem}</p> : ""}
