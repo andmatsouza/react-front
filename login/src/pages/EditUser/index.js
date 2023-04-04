@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import * as yup from 'yup';
+import * as yup from "yup";
 
-import {Navbar} from '../../components/Navbar';
-import {Sidebar} from '../../components/Sidebar';
+import { Navbar } from "../../components/Navbar";
+import { Sidebar } from "../../components/Sidebar";
 import api from "../../config/configApi";
 import { servDeleteUser } from "../../services/servDeleteUser";
 
@@ -11,7 +11,7 @@ export const EditUser = () => {
   const { id } = useParams();
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");  
+  const [email, setEmail] = useState("");
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
@@ -22,7 +22,7 @@ export const EditUser = () => {
 
     //if (!validate()) return;
     //se retornar tue segue o processamento, se retornar false para o processamento
-    if (!(await validate())) return;     
+    if (!(await validate())) return;
 
     const headers = {
       herders: {
@@ -88,125 +88,153 @@ export const EditUser = () => {
         });
     };
     getUser();
-  }, [id]); 
+  }, [id]);
 
   async function validate() {
-    let schema = yup.object({     
-      email: yup.string("Erro: Necessário preencher o campo e-mail1!")
-      .email("Erro: Necessário preencher o campo e-mail1!")
-      .required("Erro: Necessário preencher o campo e-mail1!"),
-      name: yup.string("Erro: Necessário preencher o campo nome1!")
-      .required("Erro: Necessário preencher o campo nome1!")
-      
+    let schema = yup.object({
+      email: yup
+        .string("Erro: Necessário preencher o campo e-mail1!")
+        .email("Erro: Necessário preencher o campo e-mail1!")
+        .required("Erro: Necessário preencher o campo e-mail1!"),
+      name: yup
+        .string("Erro: Necessário preencher o campo nome1!")
+        .required("Erro: Necessário preencher o campo nome1!"),
     });
-    
-  try {
-    await schema.validate({name, email});
-    return true;
-} catch (err) {      
-    setStatus({type: 'error', mensagem: err.errors });
-    return false;
-}
+
+    try {
+      await schema.validate({ name, email });
+      return true;
+    } catch (err) {
+      setStatus({ type: "error", mensagem: err.errors });
+      return false;
+    }
   }
 
   const deleteUser = async (idUser) => {
     const response = await servDeleteUser(idUser);
-    if(response){
-
-      if(response.type === "success"){
+    if (response) {
+      if (response.type === "success") {
         setStatus({
-          type: 'redSuccess',
-          mensagem: response.mensagem
+          type: "redSuccess",
+          mensagem: response.mensagem,
         });
-      }else{
+      } else {
         setStatus({
-          type: 'error',
-          mensagem: response.mensagem
-        })
+          type: "error",
+          mensagem: response.mensagem,
+        });
       }
-
-    }else{
+    } else {
       setStatus({
-        type: 'error',
-        mensagem: 'Erro: tente mais tarde!'
-      })
+        type: "error",
+        mensagem: "Erro: tente mais tarde!",
+      });
     }
-  }
+  };
 
   return (
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar active="users" />
-      <h1>Editar Ususário</h1>
+        <Sidebar active="users" />
 
-      <Link to="/users" reloadDocument><button type="button">Listar</button></Link>{" "}
-      <Link to={"/view-user/" + id} reloadDocument><button type="button">Visualizar</button>{" "}
-      <Link to={"#"}><button type="button" onClick={() => deleteUser(id)}>Apagar</button> </Link><br />
-        
-      </Link>
-      <br />
+        <div className="wrapper">
+          <div className="row">
+            <div className="top-content-adm">
+              <span className="title-content">Editar Ususário</span>
+              <div className="top-content-adm-right">
+                <Link to="/users" reloadDocument>
+                  <button type="button" className="btn-info">
+                    Listar
+                  </button>
+                </Link>{" "}
+                <Link to={"/view-user/" + id} reloadDocument>
+                  <button type="button" className="btn-warning">
+                    Visualizar
+                  </button>
+                </Link>{" "}
+                <Link to={"#"}>
+                  <button
+                    type="button"
+                    className="btn-danger"
+                    onClick={() => deleteUser(id)}
+                  >
+                    Apagar
+                  </button>{" "}
+                </Link>
+              </div>
+            </div>
 
-      {status.type === "redWarning" ? (
-        <Navigate
-          to="/users"
-          state={{
-            type: "error",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+            <div className="alert-content-adm">
+              {status.type === "redWarning" ? (
+                <Navigate
+                  to="/users"
+                  state={{
+                    type: "error",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "redSuccess" ? (
-        <Navigate
-          to="/users"
-          state={{
-            type: "success",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+              {status.type === "redSuccess" ? (
+                <Navigate
+                  to="/users"
+                  state={{
+                    type: "success",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "error" ? (
-        <p style={{ color: "#ff0000" }}>{status.mensagem}</p>
-      ) : (
-        ""
-      )}
+              {status.type === "error" ? (
+                <p className="alert-danger">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+            </div>
 
-      <hr />
+            <div className="content-adm">
+              <form onSubmit={editUser} className="form-adm">
+                <div className="row-input">
+                  <div className="column">
+                    <label className="title-input">Nome</label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="input-adm"
+                      placeholder="Nome completo do usuário"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-      <form onSubmit={editUser}>
-        <label>Nome*:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nome completo do usuário"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <br />
+                <div className="row-input">
+                  <div className="column">
+                    <label className="title-input">E-mail</label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="input-adm"
+                      placeholder="Melhor e-mail do usuário"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-        <label>E-mail*:</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Melhor e-mail do usuário"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <br />       
-
-        * Campo obrigatório <br /><br />
-
-        <button type="submit">Salvar</button>
-      </form>
-    </div>
+                <button type="submit" className="btn-success">
+                  Salvar
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
