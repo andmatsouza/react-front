@@ -1,5 +1,7 @@
 import React, {useContext, useState} from "react";
+import {Link} from 'react-router-dom';
 import {Context} from '../../Context/AuthContext'; 
+
 
 export const Navbar = () => {
 
@@ -33,10 +35,12 @@ export const Navbar = () => {
           <img src={image} alt={name} />
           </span>
           <div id="dropNavbarUser" className="dropdown-menu setting">
-            <div className="item"><span className="fas fa-user"></span> Perfil</div>
             <div className="item">
-              <span className="fas fa-cog"></span> Configuração
-            </div>
+              <Link to="/view-profile">
+              <span className="fas fa-user"></span> Perfil
+              </Link>
+              
+            </div>           
             <div className="item" onClick={handleLogout}>
               <span className="fas fa-sign-out-alt"></span> Sair
             </div>
