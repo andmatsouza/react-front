@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import * as yup from 'yup';
 
-import {Menu} from '../../components/Menu';
+import {Navbar} from '../../components/Navbar';
+import {Sidebar} from '../../components/Sidebar';
 import api from "../../config/configApi";
 import { servDeleteUser } from "../../services/servDeleteUser";
 
@@ -134,8 +135,9 @@ export const EditUser = () => {
 
   return (
     <div>
-      <Menu />
-     
+      <Navbar />
+      <div className="content">
+          <Sidebar />
       <h1>Editar Ususário</h1>
 
       <Link to="/users" reloadDocument><button type="button">Listar</button></Link>{" "}
@@ -204,6 +206,7 @@ export const EditUser = () => {
 
         <button type="submit">Salvar</button>
       </form>
+    </div>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 
-import {Menu} from '../../components/Menu';
+import {Navbar} from '../../components/Navbar';
+import {Sidebar} from '../../components/Sidebar';
+
 import { servDeleteUser } from "../../services/servDeleteUser";
 import api from "../../config/configApi";
 
@@ -76,7 +78,9 @@ export const ViewUser = (props) => {
 
   return (
     <div>
-      <Menu />
+      <Navbar />
+      <div className="content">
+          <Sidebar />
       <h1>Detalhes do Usuário</h1>
       <Link to="/users">
         <button type="button">Listar</button>
@@ -135,6 +139,7 @@ export const ViewUser = (props) => {
       <br />
       <span>{data.email}</span>
       <br />
+    </div>
     </div>
   );
 };

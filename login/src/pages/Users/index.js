@@ -4,7 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { servDeleteUser } from '../../services/servDeleteUser';
 
 import api from '../../config/configApi';
-import { Menu } from "../../components/Menu";
+import {Navbar} from '../../components/Navbar';
+import {Sidebar} from '../../components/Sidebar';
 
 export const Users = () => {
 
@@ -69,10 +70,12 @@ export const Users = () => {
     }
 }
 
-  return(
-    <>
+  return(   
 
-      <Menu />
+<div>
+      <Navbar/>
+    <div className="content">
+          <Sidebar />
       <h1>Listar Usuários</h1>
       <Link to="/add-user">Cadastrar</Link><br /><hr />
       {status.type === 'error' ? <p>{status.mensagem}</p> : ""}
@@ -103,6 +106,8 @@ export const Users = () => {
 
         {page !== lastPage ? <button type="button" onClick={() => getUsers(lastPage)}>Última</button> : <button type="button" disabled>Última</button>}{" "}
 
-    </>
+    
+    </div>
+  </div>
   );
 }

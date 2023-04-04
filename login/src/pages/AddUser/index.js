@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import * as yup from 'yup';
 
-import {Menu} from '../../components/Menu';
-
 import api from '../../config/configApi';
+import {Navbar} from '../../components/Navbar';
+import {Sidebar} from '../../components/Sidebar';
 
 
 export const AddUser = () => {
@@ -101,7 +101,9 @@ export const AddUser = () => {
 
   return(
     <div>
-       <Menu />  
+       <Navbar />
+       <div className="content">
+          <Sidebar /> 
       <h1>Cadastrar Usuário</h1>
       <Link to="/users" reloadDocument><button type="button">Listar</button></Link><br /> 
       
@@ -129,6 +131,7 @@ export const AddUser = () => {
 
         <button type="submit">Cadastrar</button>
       </form>
+    </div>
     </div>
   )
 }
