@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import {Navbar} from '../../components/Navbar';
 import {Sidebar} from '../../components/Sidebar';
@@ -103,8 +103,24 @@ export const EditProfileImage = () => {
       <Navbar />
       <div className="content">
           <Sidebar active="profile" />
-      <h1>Editar Foto Perfil</h1>      
 
+          
+        <div className="wrapper">
+          <div className="row">
+
+          <div className="top-content-adm">
+              <span className="title-content">Editar Imagem Perfil</span>
+              <div className="top-content-adm-right">
+                <Link to="/view-profile" reloadDocument>
+                  <button type="button" className="btn-warning">
+                    Visualizar
+                  </button>
+                </Link>{" "}
+              </div>             
+            </div>
+
+           
+      <div className="alert-content-adm">
       {status.type === "redSuccess" ? (
         <Navigate
           to="/view-profile"
@@ -122,11 +138,13 @@ export const EditProfileImage = () => {
       ) : (
         ""
       )}
+      </div>
 
-      <hr />
-
-      <form onSubmit={editProfileImage}>
+      <div className="content-adm">
+      <form onSubmit={editProfileImage} className="form-adm">
         <label>Imagem*:</label>
+        <div className="row-input">
+        <div className="column">
         <input
           type="file"
           name="image" 
@@ -136,17 +154,18 @@ export const EditProfileImage = () => {
         <br />
         <br />
 
-        {image ? <img src={URL.createObjectURL(image)} alt="Imagem do usuário" width="150" height="150" /> : <img src={endImg} alt="Imagem do usuário" width="150" height="150" />}
-                <br /><br />
+        {image ? <img src={URL.createObjectURL(image)} alt="Imagem do usuário" width="150" height="150" /> : <img src={endImg} alt="Imagem do usuário" width="150" height="150" />}               
 
-        {/*image ? <img src={URL.createObjectURL(image)} alt="Imagem do usuário" width="150" height="150" /> : <img src={endImg} alt="Imagem do usuário" width="150" height="150" /> buscando do localstorage - tem q comentar o useEffect*/}
+        {/*image ? <img src={URL.createObjectURL(image)} alt="Imagem do usuário" width="150" height="150" /> : <img src={endImg} alt="Imagem do usuário" width="150" height="150" /> buscando do localstorage - tem q comentar o useEffect*/}                
+        </div>
+        </div>
 
-                
-
-        * Campo obrigatório <br /><br />
-
-        <button type="submit">Salvar</button>
+        <button type="submit" className="btn-success">Salvar</button>
       </form> 
+      </div>
+      </div>
+      </div>
+
     </div>
     </div>
   );
