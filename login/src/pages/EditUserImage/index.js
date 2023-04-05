@@ -117,12 +117,35 @@ export const EditUserImage = (props) => {
             <Navbar />
             <div className="content">
           <Sidebar active="users"/>
-            <h1>Editar Usuário</h1>
 
-            <Link to="/users"><button type="button">Listar</button></Link>{" "}
-            <Link to={"/view-user/" + id}><button type="button">Visualizar</button></Link>{" "}
-            <Link to={"#"}><button type="button" onClick={() => deleteUser(id)}>Apagar</button></Link>
-            <br />
+          <div className="wrapper">
+          <div className="row">
+
+          <div className="top-content-adm">
+              <span className="title-content">Editar Imagem Ususário</span>
+              <div className="top-content-adm-right">
+                <Link to="/users" reloadDocument>
+                  <button type="button" className="btn-info">
+                    Listar
+                  </button>
+                </Link>{" "}
+                <Link to={"/view-user/" + id} reloadDocument>
+                  <button type="button" className="btn-warning">
+                    Visualizar
+                  </button>
+                </Link>{" "}
+                <Link to={"#"}>
+                  <button
+                    type="button"
+                    className="btn-danger"
+                    onClick={() => deleteUser(id)}
+                  >
+                    Apagar
+                  </button>{" "}
+                </Link>
+              </div>
+            </div>
+           
 
             {status.type === "redWarning" ? (
             <Navigate
@@ -168,6 +191,11 @@ export const EditUserImage = (props) => {
 
                 <button type="submit">Salvar</button>
             </form>
+
+            </div>
+            </div>
+
+
             </div>
         </div>
     )
