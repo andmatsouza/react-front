@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import * as yup from 'yup';
+import * as yup from "yup";
 
-import {Navbar} from '../../components/Navbar';
-import {Sidebar} from '../../components/Sidebar';
+import { Navbar } from "../../components/Navbar";
+import { Sidebar } from "../../components/Sidebar";
 import api from "../../config/configApi";
 
 export const EditProfilePassword = () => {
-
   const [name, setName] = useState("");
-  const [email, setEmail] = useState(""); 
-  const [password, setPassword] = useState(''); 
-  
- 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
@@ -20,20 +18,20 @@ export const EditProfilePassword = () => {
 
   const editProfilePassword = async (e) => {
     e.preventDefault();
-    
+
     //se retornar tue segue o processamento, se retornar false para o processamento
-    if (!(await validate())) return;     
+    if (!(await validate())) return;
 
     const headers = {
       herders: {
         Authorizaton: "Bearer " + localStorage.getItem("token"),
       },
     };
-   // console.log("password" + password);
+    // console.log("password" + password);
 
     await api
       .put("/edit-profile-password", { password }, headers)
-      .then((response) => {        
+      .then((response) => {
         setStatus({
           type: "redSuccess",
           mensagem: response.data.mensagem,
@@ -93,80 +91,99 @@ export const EditProfilePassword = () => {
 
   async function validate() {
     let schema = yup.object({
-
-      password: yup.string("Erro: Necessário preencher o campo senha1!")
-      .required("Erro: Necessário preencher o campo senha1!")
-      .min(6,"Erro: A senha deve ter no mínimo 6 caracteres1!")
-      
+      password: yup
+        .string("Erro: Necessário preencher o campo senha1!")
+        .required("Erro: Necessário preencher o campo senha1!")
+        .min(6, "Erro: A senha deve ter no mínimo 6 caracteres1!"),
     });
-    
-  try {
-    await schema.validate({password});
-    return true;
-} catch (err) {      
-    setStatus({type: 'error', mensagem: err.errors });
-    return false;
-}
+
+    try {
+      await schema.validate({ password });
+      return true;
+    } catch (err) {
+      setStatus({ type: "error", mensagem: err.errors });
+      return false;
+    }
   }
-  
+
   return (
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar active="profile" /> 
-      <h1>Editar Senha</h1>
+        <Sidebar active="profile" />
 
-      
-      <Link to="/view-profile" reloadDocument><button type="button">Perfil</button></Link>{" "}    
-      
+        <div className="wrapper">
+          <div className="row">
+            <div className="top-content-adm">
+              <span className="title-content">Editar Senha Perfil</span>
+              <div className="top-content-adm-right">
+                <Link to="/view-profile" reloadDocument>
+                  <button type="button" className="btn-warning">
+                    Visualizar
+                  </button>
+                </Link>{" "}
+              </div>
+            </div>
 
-      {status.type === "redWarning" ? (
-        <Navigate
-          to="/login"
-          state={{
-            type: "error",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+            <div className="alert-content-adm">
+              {status.type === "redWarning" ? (
+                <Navigate
+                  to="/login"
+                  state={{
+                    type: "error",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "redSuccess" ? (
-        <Navigate
-          to="/view-profile"
-          state={{
-            type: "success",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+              {status.type === "redSuccess" ? (
+                <Navigate
+                  to="/view-profile"
+                  state={{
+                    type: "success",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "error" ? (
-        <p style={{ color: "#ff0000" }}>{status.mensagem}</p>
-      ) : (
-        ""
-      )}
+              {status.type === "error" ? (
+                <p className="alert-danger">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+            </div>
 
-      <hr />
+            <div className="content-adm">
+              <form onSubmit={editProfilePassword} className="form-adm">
+                <label>Nome: {name}</label>
+                <br />
+                <label>E-mail: {email}</label>
+                <br /> <br />
 
-      <form onSubmit={editProfilePassword}>
-
-      <label>Nome: {name}</label><br /> 
-      <label>E-mail: {email}</label><br /> <br /> 
-
-      <label>Senha*:</label>
-        <input type="password" name="password" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={text => setPassword(text.target.value)} />
-        <br />
-        <br />       
-
-        * Campo obrigatório <br /><br />
-
-        <button type="submit">Salvar</button>
-      </form>
-    </div>
+                <div className="row-input">
+                  <div className="column">
+                    <label class="title-input">Senha</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="input-adm"
+                      placeholder="Senha para acessar o sistema"
+                      autoComplete="on"
+                      onChange={(text) => setPassword(text.target.value)}
+                    />
+                  </div>
+                </div>
+               
+                <button type="submit" className="btn-success">Salvar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
