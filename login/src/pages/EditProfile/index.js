@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import * as yup from 'yup';
+import * as yup from "yup";
 
-import {Navbar} from '../../components/Navbar';
-import {Sidebar} from '../../components/Sidebar';
+import { Navbar } from "../../components/Navbar";
+import { Sidebar } from "../../components/Sidebar";
 import api from "../../config/configApi";
 
 export const EditProfile = () => {
-  
-
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");  
+  const [email, setEmail] = useState("");
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
@@ -21,7 +19,7 @@ export const EditProfile = () => {
 
     //if (!validate()) return;
     //se retornar tue segue o processamento, se retornar false para o processamento
-    if (!(await validate())) return;     
+    if (!(await validate())) return;
 
     const headers = {
       herders: {
@@ -32,7 +30,7 @@ export const EditProfile = () => {
     await api
       .put("/edit-profile", { name, email }, headers)
       .then((response) => {
-        localStorage.setItem('name', name);
+        localStorage.setItem("name", name);
         setStatus({
           type: "redSuccess",
           mensagem: response.data.mensagem,
@@ -88,97 +86,115 @@ export const EditProfile = () => {
         });
     };
     getUser();
-  }, []); 
+  }, []);
 
   async function validate() {
-    let schema = yup.object({     
-      email: yup.string("Erro: Necessário preencher o campo e-mail1!")
-      .email("Erro: Necessário preencher o campo e-mail1!")
-      .required("Erro: Necessário preencher o campo e-mail1!"),
-      name: yup.string("Erro: Necessário preencher o campo nome1!")
-      .required("Erro: Necessário preencher o campo nome1!")
-      
+    let schema = yup.object({
+      email: yup
+        .string("Erro: Necessário preencher o campo e-mail1!")
+        .email("Erro: Necessário preencher o campo e-mail1!")
+        .required("Erro: Necessário preencher o campo e-mail1!"),
+      name: yup
+        .string("Erro: Necessário preencher o campo nome1!")
+        .required("Erro: Necessário preencher o campo nome1!"),
     });
-    
-  try {
-    await schema.validate({name, email});
-    return true;
-} catch (err) {      
-    setStatus({type: 'error', mensagem: err.errors });
-    return false;
-}
+
+    try {
+      await schema.validate({ name, email });
+      return true;
+    } catch (err) {
+      setStatus({ type: "error", mensagem: err.errors });
+      return false;
+    }
   }
-  
+
   return (
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar active="profile" /> 
-      <h1>Editar Perfil</h1>
+        <Sidebar active="profile" />
 
-      <Link to="/view-profile" reloadDocument><button type="button">Perfil</button></Link>{" "}     
-      <br />
+        <div className="wrapper">
+          <div className="row">
+            <div className="top-content-adm">
+              <span className="title-content">Editar Perfil</span>
+              <div className="top-content-adm-right">
+                <Link to="/view-profile" reloadDocument>
+                  <button type="button" className="btn-warning">
+                    Visualizar
+                  </button>
+                </Link>{" "}
+              </div>
+            </div>
 
-      {status.type === "redWarning" ? (
-        <Navigate
-          to="/login"
-          state={{
-            type: "error",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+            <div className="alert-content-adm">
+              {status.type === "redWarning" ? (
+                <Navigate
+                  to="/login"
+                  state={{
+                    type: "error",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "redSuccess" ? (
-        <Navigate
-          to="/view-profile"
-          state={{
-            type: "success",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+              {status.type === "redSuccess" ? (
+                <Navigate
+                  to="/view-profile"
+                  state={{
+                    type: "success",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "error" ? (
-        <p style={{ color: "#ff0000" }}>{status.mensagem}</p>
-      ) : (
-        ""
-      )}
+              {status.type === "error" ? (
+                <p className="alert-danger">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+            </div>
 
-      <hr />
+            <div className="content-adm">
+              <form onSubmit={editProfile} className="form-adm">
+                <div className="row-input">
+                  <div className="column">
+                    <label className="title-input">Nome</label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="input-adm"
+                      placeholder="Nome completo do usuário"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-      <form onSubmit={editProfile}>
-        <label>Nome*:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nome completo do usuário"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <br />
+                <div className="row-input">
+                  <div className="column">
+                    <label className="title-input">E-mail</label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="input-adm"
+                      placeholder="Melhor e-mail do usuário"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-        <label>E-mail*:</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Melhor e-mail do usuário"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <br />       
-
-        * Campo obrigatório <br /><br />
-
-        <button type="submit">Salvar</button>
-      </form>
-    </div>
+                <button type="submit" className="btn-success">Salvar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
