@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import * as yup from 'yup';
 
-import {Navbar} from '../../components/Navbar';
-import {Sidebar} from '../../components/Sidebar';
+import { Navbar } from '../../components/Navbar';
+import { Sidebar } from '../../components/Sidebar';
 import api from "../../config/configApi";
 import { servDeleteUser } from "../../services/servDeleteUser";
 
 export const EditUserPassword = (props) => {
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState(""); 
-  const [password, setPassword] = useState(''); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState('');
   const { id } = useParams();
- 
+
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
@@ -24,7 +24,7 @@ export const EditUserPassword = (props) => {
 
     //if (!validate()) return;
     //se retornar tue segue o processamento, se retornar false para o processamento
-    if (!(await validate())) return;     
+    if (!(await validate())) return;
 
     const headers = {
       herders: {
@@ -96,37 +96,37 @@ export const EditUserPassword = (props) => {
     let schema = yup.object({
 
       password: yup.string("Erro: Necessário preencher o campo senha1!")
-      .required("Erro: Necessário preencher o campo senha1!")
-      .min(6,"Erro: A senha deve ter no mínimo 6 caracteres1!")
-      
+        .required("Erro: Necessário preencher o campo senha1!")
+        .min(6, "Erro: A senha deve ter no mínimo 6 caracteres1!")
+
     });
-    
-  try {
-    await schema.validate({password});
-    return true;
-} catch (err) {      
-    setStatus({type: 'error', mensagem: err.errors });
-    return false;
-}
+
+    try {
+      await schema.validate({ password });
+      return true;
+    } catch (err) {
+      setStatus({ type: 'error', mensagem: err.errors });
+      return false;
+    }
   }
 
   const deleteUser = async (idUser) => {
     const response = await servDeleteUser(idUser);
-    if(response){
+    if (response) {
 
-      if(response.type === "success"){
+      if (response.type === "success") {
         setStatus({
           type: 'redSuccess',
           mensagem: response.mensagem
         });
-      }else{
+      } else {
         setStatus({
           type: 'error',
           mensagem: response.mensagem
         })
       }
 
-    }else{
+    } else {
       setStatus({
         type: 'error',
         mensagem: 'Erro: tente mais tarde!'
@@ -138,63 +138,93 @@ export const EditUserPassword = (props) => {
     <div>
       <Navbar />
       <div className="content">
-          <Sidebar active="users"/>
-      <h1>Editar Ususário</h1>
+        <Sidebar active="users" />
 
-      <Link to="/users" reloadDocument><button type="button">Listar</button></Link>{" "}
-      <Link to={"/view-user/" + id} reloadDocument><button type="button">Visualizar</button>{" "}
-      <Link to={"#"}><button type="button" onClick={() => deleteUser(id)}>Apagar</button> </Link><br />
-        
-      </Link>
-      <br />
+        <div className="wrapper">
+          <div className="row">
 
-      {status.type === "redWarning" ? (
-        <Navigate
-          to="/users"
-          state={{
-            type: "error",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+            <div className="top-content-adm">
+              <span className="title-content">Editar Senha Ususário</span>
+              <div className="top-content-adm-right">
+                <Link to="/users" reloadDocument>
+                  <button type="button" className="btn-info">
+                    Listar
+                  </button>
+                </Link>{" "}
+                <Link to={"/view-user/" + id} reloadDocument>
+                  <button type="button" className="btn-warning">
+                    Visualizar
+                  </button>
+                </Link>{" "}
+                <Link to={"#"}>
+                  <button
+                    type="button"
+                    className="btn-danger"
+                    onClick={() => deleteUser(id)}
+                  >
+                    Apagar
+                  </button>{" "}
+                </Link>
+              </div>
+            </div>
 
-      {status.type === "redSuccess" ? (
-        <Navigate
-          to="/users"
-          state={{
-            type: "success",
-            mensagem: status.mensagem,
-          }}
-        />
-      ) : (
-        ""
-      )}
+            <div className="alert-content-adm">
+              {status.type === "redWarning" ? (
+                <Navigate
+                  to="/users"
+                  state={{
+                    type: "error",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      {status.type === "error" ? (
-        <p style={{ color: "#ff0000" }}>{status.mensagem}</p>
-      ) : (
-        ""
-      )}
+              {status.type === "redSuccess" ? (
+                <Navigate
+                  to="/users"
+                  state={{
+                    type: "success",
+                    mensagem: status.mensagem,
+                  }}
+                />
+              ) : (
+                ""
+              )}
 
-      <hr />
+              {status.type === "error" ? (
+                <p className="alert-danger">{status.mensagem}</p>
+              ) : (
+                ""
+              )}
+            </div>
 
-      <form onSubmit={editUserPassword}>
+            <div className="content-adm">
+              <form onSubmit={editUserPassword} className="form-adm">
+                <label>Nome: {name}</label><br />
+                <label>E-mail: {email}</label><br /> <br />
 
-      <label>Nome: {name}</label><br /> 
-      <label>E-mail: {email}</label><br /> <br /> 
+                <div className="row-input">
 
-      <label>Senha*:</label>
-        <input type="password" name="password" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={text => setPassword(text.target.value)} />
-        <br />
-        <br />       
+                  <div className="column">
+                    <label class="title-input">Senha</label>
+                    <input type="password" name="password" className="input-adm" placeholder="Senha para acessar o sistema" autoComplete="on" onChange={text => setPassword(text.target.value)} />
+                  </div>
 
-        * Campo obrigatório <br /><br />
+                </div>
 
-        <button type="submit">Salvar</button>
-      </form>
-    </div>
+
+
+                <button type="submit" className="btn-success">Salvar</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
     </div>
   );
 };
