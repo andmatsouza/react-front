@@ -498,6 +498,12 @@ body {
   overflow: hidden;
 }
 
+.row .content-adm2 {  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;  
+}
+
 .top-content-adm .title-content {
   float: left;
   color: var(--main-bg-color);
