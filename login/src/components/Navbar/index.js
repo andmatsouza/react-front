@@ -25,7 +25,7 @@ export const Navbar = () => {
         <div className="bars" onClick={() => barsSidebar()}>
           <i className="fas fa-bars"></i>
         </div>
-        <img src="logo-psc-bra-sf.png" alt="imagem logo" className="logo" />        
+        <img src="/logo-psc-bra-sf.png" alt="imagem logo" className="logo" />        
       </div>
 
       <div className="navbar-content">        
