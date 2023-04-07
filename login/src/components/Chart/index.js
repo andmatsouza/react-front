@@ -59,8 +59,8 @@ export function ChartAbastLitro(props) {
       options={options}
       series={series}
       type="bar"
-      width={540}
-      height={380}
+      width={340}
+      height={280}
     />
   );
 }
@@ -106,8 +106,8 @@ export function ChartAbastValor(props) {
       options={options}
       series={series}
       type="donut"
-      width={540}
-      height={380}
+      width={340}
+      height={280}
     />
   );
 }
@@ -185,6 +185,6 @@ export function ChartOdmetro(props) {
   options={options} 
   series={series}  
   type="bar"
-  width={540}
-  height={380} />;
+  width={340}
+  height={280} />;
 }
