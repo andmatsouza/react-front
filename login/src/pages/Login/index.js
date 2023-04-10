@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-//substituiu a useHistory
+//useNavigate substituiu a useHistory
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 //conexão com API
@@ -15,6 +15,7 @@ export const Login = () =>{
     //usado para redirecionar página
     const navegate = useNavigate();
 
+    //recuperei a função sigin que está no authContext
     const { signIn } = useContext(Context);
 
     //console.log("Situação do usuário na página login: " + authenticated);
@@ -49,7 +50,7 @@ export const Login = () =>{
        //requisição post p API
        await api.post("/login", user, {headers})
        .then((response) => {
-        console.log(response)
+       // console.log(response)
         setStatus({
             /*type: 'success',
             mensagem: response.data.mensagem,*/

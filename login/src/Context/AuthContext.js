@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from "react";
 import api from "../config/configApi";
 
 const Context = createContext();
-
+//O Context serve p compartilhar dados com outras páginas do projeto (Ex: login, dashboard, etc...)
 function AuthProvider({ children }) {
   //hooks para setar as propriedades: authenticated, loading, etc...  
   const [authenticated, setAuthenticated] = useState(false);

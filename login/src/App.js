@@ -8,6 +8,7 @@ import { AuthProvider } from "./Context/AuthContext";
 function App() {
   return (
     <div>
+      {/* //Authprovider recebe os children (todas as rotas - import Route from "./routes/routersAdm") */}
       <AuthProvider>
         <Router>
           <Route />
