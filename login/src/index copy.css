@@ -49,31 +49,13 @@ body {
 
 .d-flex {
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
+  align-items: center;
+  justify-content: center;
   height: 100vh;
-  flex-direction: column;
-}
-
-.container-header {
-  /* width: 100px; */
-  flex-basis: 20%;  
-  display: flex;
-  flex-direction: row;
-  margin: 0 5px;
-  background: var(--second-bg-color3);
-}
-.container-text {
-  /* width: 100px; */
-  /* flex-basis: 20%;   */
-  display: flex;
-  flex-direction: row;
-  margin: 0 5px;
-  background: var(--second-bg-color3);
 }
 
 .container-login {
-  width: 200px; 
+  width: 400px;
   display: flex;
   flex-direction: row;
   margin: 0 5px;
@@ -86,30 +68,30 @@ body {
   box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  height: 60px;
+.wrapper-login .title {
+  height: 90px;
   background: var(--main-bg-color);
   border-radius: 5px 5px 0 0;
   color: var(--main-color);
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form-login {
+.wrapper-login .form-login {
   padding: 25px;
 }
 
-.form-login .row {
+.wrapper-login .form-login .row {
   height: 45px;
   margin-bottom: 15px;
   position: relative;
 }
 
-.form-login .row input,
-.form-login .row .button-login {
+.wrapper-login .form-login .row input,
+.wrapper-login .form-login .row .button-login {
   height: 100%;
   width: 100%;
   outline: none;
@@ -138,7 +120,7 @@ body {
   justify-content: center;
 }
 
-.form-login .button .button-login {
+.wrapper-login .form-login .button .button-login {
   color: var(--main-color);
   font-size: 20px;
   font-weight: 300;
@@ -153,13 +135,13 @@ body {
   background: var(--second-bg-color);
 }
 
-.form-login .signup-link {
+.wrapper-login .form-login .signup-link {
   text-align: center;
   margin-top: 20px;
   font-size: 17px;
 }
 
-.form-login .signup-link .link-pg-login {
+.wrapper-login .form-login .signup-link .link-pg-login {
   color: var(--main-bg-color);
   text-decoration: none;
 }
@@ -376,11 +358,6 @@ body {
     z-index: 1;
     width: 0;
   }
-}
-
-
-.content .sidebar.active {
-  width: 250px;
 }
 
 .content .sidebar:hover,
