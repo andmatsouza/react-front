@@ -3,6 +3,10 @@ import React, { useState, useContext } from 'react';
 //useNavigate substituiu a useHistory
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+
 //conexão com API
 import api from '../../config/configApi';
 
@@ -87,9 +91,9 @@ export const Login = () => {
     return (
         <div className="d-flex">
             <div className="container-header">
-            <img src="/logo-cpaex-sf.png" alt="imagem logo" className='img-header' /> 
-            <img src="/banner-site-psc-3.png" alt="imagem logo" /> 
-            <img src="/logo-cpaex-sf.png" alt="imagem logo" className='img-header' /> 
+                <img src="/logo-cpaex-sf.png" alt="imagem logo" className='img-header' />
+                <img src="/banner-site-psc-3.png" alt="imagem logo" />
+                <img src="/logo-cpaex-sf.png" alt="imagem logo" className='img-header' />
             </div>
             <div className="container-login">
                 <div className="wrapper-login">
@@ -122,7 +126,42 @@ export const Login = () => {
                         </div>
                     </form>
                 </div>
-                <div className="container-text"><p>dfksdfjksdfkjlsdfjkslffjslfjslçfsjkflsjfkslfskld</p></div>
+                <div className="container-text">
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src="/banner-site-psc.png" />
+                        <Card.Body>
+                            <Card.Title>SIGAP</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src="/banner-site.png" />
+                        <Card.Body>
+                            <Card.Title>Card Title</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src="/banner-site.png" />
+                        <Card.Body>
+                            <Card.Title>Card Title</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+
+                </div>
             </div>
         </div>
     );
