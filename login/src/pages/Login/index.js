@@ -20,7 +20,7 @@ export const Login = () =>{
 
     //console.log("Situação do usuário na página login: " + authenticated);
 
-    //hook usado para setar valores em um objeto
+    //hook (useState) usado para setar valores em um objeto
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -60,7 +60,7 @@ export const Login = () =>{
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('name', response.data.user.name);
         localStorage.setItem('image', response.data.user.image);
-        //função chamada do contex 
+        //função chamada do contex - seta a constante [authenticated] p true
         signIn(true);
         //caso login com sucesso redireciona p página dashboard
         return navegate("/dashboard");

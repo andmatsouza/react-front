@@ -3,12 +3,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Context } from "../Context/AuthContext";
 
-//rotas públicas
+//páginas públicas
 import { Login } from "../pages/Login";
 import { AddUserLogin } from "../pages/AddUserLogin";
 import { RecoverPassword } from "../pages/RecoverPassword";
 
-//rotas privadas - precisa estar logado para acessar
+//páginas privadas - precisa estar logado para acessar
 import { Dashboard } from "../pages/Dashboard";
 import { Users } from "../pages/Users";
 import { AddUser } from "../pages/AddUser";
@@ -22,6 +22,7 @@ import { UpdatePassword } from "../pages/UpdatePassword";
 import { EditProfileImage } from "../pages/EditProfileImage";
 import { EditUserImage } from '../pages/EditUserImage';
 
+//Componente q verifica se a rota é privada
 function PrivateRoute({ children }) {
   const { authenticated } = useContext(Context);
   return authenticated ? children : <Navigate to="/" />;  

@@ -1,16 +1,16 @@
 import React, { createContext, useEffect, useState } from "react";
 //precisa importar a api antes do context
 import api from "../config/configApi";
-
 const Context = createContext();
+
 //O Context serve p compartilhar dados com outras páginas do projeto (Ex: login, dashboard, etc...)
 function AuthProvider({ children }) {
-  //hooks para setar as propriedades: authenticated, loading, etc...  
+  //hook (useState) para setar as propriedades: authenticated, loading, etc...  
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
   
-//hook para executar toda vez q a pagina é chamada
+//hook (useEffect) para executar toda vez q a pagina é chamada
  useEffect(() => {
     //função q verifica se o token existe e é valido
     const getLogin = async () => {
