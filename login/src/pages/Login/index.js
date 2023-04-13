@@ -152,13 +152,13 @@ export const Login = () => {
               )}
             </div>
             <div className="signup-link">
-              <Link to="/add-user-login" className="link-pg-login">
+              {/* <Link to="/add-user-login" className="link-pg-login">
                 Cadastrar
               </Link>
               {" - "}
               <Link to="/recover-password" className="link-pg-login">
                 Esqueceu a senha?
-              </Link>
+              </Link> */}
             </div>
           </form>
         </div>
@@ -190,7 +190,7 @@ export const Login = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col>
+            {/* <Col>
               <Card>
                 <Card.Img variant="top" src="/banner-card-5.png" />
                 <Card.Body>
@@ -215,7 +215,7 @@ export const Login = () => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-            </Col>
+            </Col> */}
           </Row>
           {/* <Card>
             <Card.Img variant="top" src="/banner-card-2.png" />
