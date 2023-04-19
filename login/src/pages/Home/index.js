@@ -3,6 +3,8 @@ import React, { useState, useContext } from "react";
 //useNavigate substituiu a useHistory
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
+import {Login} from '../Login';
+
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -97,71 +99,7 @@ export const Home = () => {
         <img src="/cpaex-site.png" alt="imagem logo" className="img-header" />
       </div>
       <div className="container-login">
-        <div className="wrapper-login">
-          <div className="title">
-            <span>Sigap - Área Restrita</span>
-          </div>
-
-          <form onSubmit={loginSubmit} className="form-login">
-            {status.type === "error" ? (
-              <p className="alert-danger">{status.mensagem}</p>
-            ) : (
-              ""
-            )}
-            {status.type === "success" ? (
-              <p className="alert-success">{status.mensagem}</p>
-            ) : (
-              ""
-            )}
-
-            {status.loading ? (
-              <p className="alert-success">Validando...</p>
-            ) : (
-              ""
-            )}
-
-            <div className="row">
-              <i className="fas fa-user"></i>
-              <input
-                type="text"
-                name="email"
-                placeholder="Digite o e-mail"
-                onChange={valorInput}
-              />
-            </div>
-            <div className="row">
-              <i className="fas fa-lock"></i>
-              <input
-                type="password"
-                name="password"
-                placeholder="Digite a senha"
-                autoComplete="on"
-                onChange={valorInput}
-              />
-            </div>
-
-            <div className="row button">
-              {status.loading ? (
-                <button type="submit" className="button-login" disabled>
-                  Acessando...
-                </button>
-              ) : (
-                <button type="submit" className="button-login">
-                  Acessar
-                </button>
-              )}
-            </div>
-            <div className="signup-link">
-              {/* <Link to="/add-user-login" className="link-pg-login">
-                Cadastrar
-              </Link>
-              {" - "}
-              <Link to="/recover-password" className="link-pg-login">
-                Esqueceu a senha?
-              </Link> */}
-            </div>
-          </form>
-        </div>
+        {<Login />}
         <div className="container-text">
           <Row xs={1} md={2} className="g-4">
             <Col>
