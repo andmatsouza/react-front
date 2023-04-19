@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Context } from "../Context/AuthContext";
 
 //páginas públicas
+import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { AddUserLogin } from "../pages/AddUserLogin";
 import { RecoverPassword } from "../pages/RecoverPassword";
@@ -31,7 +32,7 @@ function PrivateRoute({ children }) {
 export default function RoutesAdm() {
   return (
     <Routes>
-      <Route exact path="/" element={<Login />} />
+      <Route exact path="/" element={<Home />} />
       <Route exact path="/add-user-login" element={<AddUserLogin />} />
       <Route exact path="/recover-password" element={<RecoverPassword />} />
       <Route exact path="/update-password/:key" element={<UpdatePassword />} />
