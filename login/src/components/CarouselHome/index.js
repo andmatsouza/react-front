@@ -8,7 +8,7 @@ export const CarouselHome = () => {
       <Carousel.Item interval={1000}>
         <img
           className="d-block w-100"
-          src="/banner-home-400x800-1.png"
+          src="/banner-card-3.png"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -19,7 +19,7 @@ export const CarouselHome = () => {
       <Carousel.Item interval={500}>
         <img
           className="d-block w-100"
-          src="/banner-home-400x800-1.png"
+          src="/banner-card-2.png"
           alt="Second slide"
         />
         <Carousel.Caption>
@@ -30,7 +30,7 @@ export const CarouselHome = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/banner-home-400x800-1.png"
+          src="/banner-card-4.png"
           alt="Third slide"
         />
         <Carousel.Caption>
