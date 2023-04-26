@@ -9,7 +9,7 @@ export const Home = () => {
     <>
       <div className="d-flex">
       <div className="container-header">
-        <img src="/cpaex-site.png" alt="imagem logo" className="img-header" />
+        <img src="/logo-eb.png" alt="imagem logo" className="img-header" />
         <img src="/banner-site-psc-3-sf.png" alt="imagem logo" />
         <img src="/cpaex-site.png" alt="imagem logo" className="img-header" />
       </div>

@@ -124,7 +124,7 @@ body {
   /* height: 1024px; */
   display: flex;
   flex-direction: row;
-  margin: 0 0px;  
+  margin: 10px 0px;  
 }
 
 .container-login {
@@ -140,10 +140,10 @@ body {
   /* flex-direction: row; */
   flex-direction: column;
   margin: 0 2px;
-  gap: 8px;
+  gap: 28px;
   background: var(--second-color);
-  /* align-items: start;
-  justify-content: space-around; */
+  /* align-items: center; */
+  justify-content: center;
 }
 
 .container-footer {
@@ -163,7 +163,7 @@ body {
 
 .img-header{
   width: 80px;
-  height: 80px;
+  height: 90px;
 }
 
 .wrapper-login {

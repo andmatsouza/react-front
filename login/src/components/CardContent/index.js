@@ -36,7 +36,7 @@ export const CardContent = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col>
+            {/* <Col>
               <Card>
                 <Card.Img variant="top" src="/banner-card-5.png" />
                 <Card.Body>
@@ -61,7 +61,7 @@ export const CardContent = () => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-            </Col>
+            </Col> */}
           </Row>
           {/* <Card>
             <Card.Img variant="top" src="/banner-card-2.png" />
